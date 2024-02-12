@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC, useEffect } from "react";
 import {
   Link,
   Essentials,
@@ -11,19 +11,19 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { changeStyle, toggleShowOptions } from "../features/styles/stylesSlice";
 import dayjs from "dayjs";
+import { useCookies } from "react-cookie";
 
 interface ScreenImageProps {
   style: Style;
-  key: string;
 }
 
 const ScreenImage: FC<ScreenImageProps> = (props) => {
   const [showName, setShowName] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const [cookies, setCookie] = useCookies(["style"]);
 
   return (
     <div
-      key={props.key}
       style={{
         backgroundImage: `url(${props.style.backgroundImage})`,
       }}
@@ -33,12 +33,12 @@ const ScreenImage: FC<ScreenImageProps> = (props) => {
       onClick={() => {
         dispatch(changeStyle(props.style));
         dispatch(toggleShowOptions());
+        setCookie("style", props.style);
       }}
     >
       <p
-        className={`${
-          showName ? "block" : "hidden"
-        } w-full h-full bg-white bg-opacity-50 flex justify-center items-center text-xl font-bold`}
+        className={`${showName ? "block" : "hidden"
+          } w-full h-full bg-white bg-opacity-50 flex justify-center items-center text-xl font-bold`}
       >
         {props.style.name}
       </p>
@@ -57,9 +57,8 @@ const ScreenOptions: FC<ScreenOptionsProps> = (props) => {
       style={{
         backgroundColor: props.currentStyle.lightColor,
       }}
-      className={`absolute left-0 top-0 w-full h-full flex justify-center items-center ${
-        props.visible ? "block" : "hidden"
-      }`}
+      className={`absolute left-0 top-0 w-full h-full flex justify-center items-center
+      ${props.visible ? "block" : "hidden"}`}
     >
       <div className="grid grid-cols-4 grid-rows-2 h-[24rem]">
         {Object.entries(myStyles).map(([key, style]) => (
@@ -99,12 +98,20 @@ const SquareBrowser = () => {
   const showOptions = useSelector((state: any) => state.styles.showOptions);
   const dispatch = useDispatch();
 
+  const [cookies, setCookie] = useCookies(["style"]);
+
+  useEffect(() => {
+    if (cookies.style) {
+      dispatch(changeStyle(cookies.style));
+    }
+  }, []);
+
   return (
     <div
       style={{
         backgroundColor: style.lightColor,
       }}
-      className="flex justify-center items-center w-full h-full"
+      className="flex justify-center items-center w-full h-full transition-all duration-500"
     >
       <button
         className="absolute top-10 right-10"
@@ -159,10 +166,9 @@ const SquareBrowser = () => {
               onSubmit={(e) => {
                 e.preventDefault();
                 window.open(
-                  `https://www.google.com/search?q=${
-                    (document.getElementById("search") as HTMLInputElement)
-                      .value
-                  }`
+                  `https://www.google.com/search?q=${(document.getElementById("search") as HTMLInputElement)
+                    .value
+                  }`,
                 );
               }}
             >
