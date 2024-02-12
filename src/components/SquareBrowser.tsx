@@ -20,7 +20,8 @@ interface ScreenImageProps {
 const ScreenImage: FC<ScreenImageProps> = (props) => {
   const [showName, setShowName] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const [cookies, setCookie] = useCookies(["style"]);
+  // const [cookies, setCookie] = useCookies(["style"]);
+  const setCookie = useCookies(["style"])[1];
 
   return (
     <div
@@ -98,7 +99,8 @@ const SquareBrowser = () => {
   const showOptions = useSelector((state: any) => state.styles.showOptions);
   const dispatch = useDispatch();
 
-  const [cookies, setCookie] = useCookies(["style"]);
+  // const [cookies, setCookie] = useCookies(["style"]);
+  const cookies = useCookies(["style"])[0];
 
   useEffect(() => {
     if (cookies.style) {
