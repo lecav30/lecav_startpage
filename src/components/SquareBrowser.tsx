@@ -34,12 +34,14 @@ const ScreenImage: FC<ScreenImageProps> = (props) => {
       onClick={() => {
         dispatch(changeStyle(props.style));
         dispatch(toggleShowOptions());
-        setCookie("style", props.style);
+        setCookie("style", props.style.name, { path: "/" });
       }}
     >
       <p
-        className={`${showName ? "block" : "hidden"
-          } w-full h-full bg-white bg-opacity-50 flex justify-center items-center text-xl font-bold`}
+        className={`${
+          showName ? "block" : "hidden"
+        } w-full h-full bg-white bg-opacity-50 flex justify-center items-center text-xl
+        font-bold`}
       >
         {props.style.name}
       </p>
@@ -104,9 +106,9 @@ const SquareBrowser = () => {
 
   useEffect(() => {
     if (cookies.style) {
-      dispatch(changeStyle(cookies.style));
+      dispatch(changeStyle(myStyles[cookies.style]));
     }
-  }, []);
+  });
 
   return (
     <div
@@ -168,9 +170,10 @@ const SquareBrowser = () => {
               onSubmit={(e) => {
                 e.preventDefault();
                 window.open(
-                  `https://www.google.com/search?q=${(document.getElementById("search") as HTMLInputElement)
-                    .value
-                  }`,
+                  `https://www.google.com/search?q=${
+                    (document.getElementById("search") as HTMLInputElement)
+                      .value
+                  }`
                 );
               }}
             >
