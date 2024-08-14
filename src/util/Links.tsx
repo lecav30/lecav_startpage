@@ -16,6 +16,10 @@ export const Essentials: Link[] = [
     name: "YouTube",
     url: "https://www.youtube.com",
   },
+  {
+    name: "ChatGPT",
+    url: "https://chatgpt.com",
+  }
 ];
 
 export const Entertainment: Link[] = [
@@ -24,16 +28,16 @@ export const Entertainment: Link[] = [
     url: "https://instagram.com",
   },
   {
-    name: "Reddit",
-    url: "https://www.reddit.com",
-  },
-  {
     name: "Pinterest",
     url: "https://www.pinterest.es",
   },
   {
     name: "Twitch",
     url: "https://www.twitch.tv",
+  },
+  {
+    name: "Kick",
+    url: "https://kick.com",
   },
 ];
 
@@ -50,6 +54,10 @@ export const Job: Link[] = [
     name: "Figma",
     url: "https://www.figma.com/files",
   },
+  {
+    name: "LinkedIn",
+    url: "https://pe.linkedin.com",
+  }
 ];
 
 export const Organization: Link[] = [

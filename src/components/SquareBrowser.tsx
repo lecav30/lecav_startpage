@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import {
   Link,
   Essentials,
@@ -20,7 +20,6 @@ interface ScreenImageProps {
 const ScreenImage: FC<ScreenImageProps> = (props) => {
   const [showName, setShowName] = useState<boolean>(false);
   const dispatch = useDispatch();
-  // const [cookies, setCookie] = useCookies(["style"]);
   const setCookie = useCookies(["style"])[1];
 
   return (
@@ -38,9 +37,8 @@ const ScreenImage: FC<ScreenImageProps> = (props) => {
       }}
     >
       <p
-        className={`${
-          showName ? "block" : "hidden"
-        } w-full h-full bg-white bg-opacity-50 flex justify-center items-center text-xl
+        className={`${showName ? "block" : "hidden"
+          } w-full h-full bg-white bg-opacity-50 flex justify-center items-center text-xl
         font-bold`}
       >
         {props.style.name}
@@ -100,15 +98,6 @@ const SquareBrowser = () => {
   const style = useSelector((state: any) => state.styles.style);
   const showOptions = useSelector((state: any) => state.styles.showOptions);
   const dispatch = useDispatch();
-
-  // const [cookies, setCookie] = useCookies(["style"]);
-  const cookies = useCookies(["style"])[0];
-
-  useEffect(() => {
-    if (cookies.style) {
-      dispatch(changeStyle(myStyles[cookies.style]));
-    }
-  });
 
   return (
     <div
@@ -170,9 +159,8 @@ const SquareBrowser = () => {
               onSubmit={(e) => {
                 e.preventDefault();
                 window.open(
-                  `https://www.google.com/search?q=${
-                    (document.getElementById("search") as HTMLInputElement)
-                      .value
+                  `https://www.google.com/search?q=${(document.getElementById("search") as HTMLInputElement)
+                    .value
                   }`
                 );
               }}

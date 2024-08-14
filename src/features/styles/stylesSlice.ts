@@ -1,15 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Style, myStyles } from "src/util/Styles";
+import Cookies from "universal-cookie";
 
 interface StylesState {
   style: Style;
   showOptions: boolean;
 }
 
+const cookies = new Cookies();
+
 export const stylesSlice = createSlice({
   name: "slice",
   initialState: {
-    style: myStyles["HimenoCigarrete"],
+    style: cookies.get("style") ? myStyles[cookies.get("style")] : myStyles["HimenoCigarrete"],
     showOptions: false,
   } as StylesState,
   reducers: {

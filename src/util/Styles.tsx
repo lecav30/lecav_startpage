@@ -1,13 +1,13 @@
-import Bluewers from "../images/bluewers.jpg";
-import Statue from "../images/statue.jpg";
-import Mountain from "../images/mountain.png";
-// import BookWeed from "../images/book-weed.jpg";
-import WhiteFlower from "../images/white_flwr.jpeg";
-import Kojiro from "../images/Kojiro.png";
-import Navigate from "../images/navigate.png";
-import Rolling from "../images/rolling.jpg";
-// import JapanGirl from "../images/japon.png";
-import HimenoCigarrete from "../images/himeno_c.jpg";
+import Bluewers from "../images/bluewers.webp";
+import Statue from "../images/statue.webp";
+import Mountain from "../images/mountain.webp";
+// import BookWeed from "../images/book-weed.webp";
+import WhiteFlower from "../images/white_flwr.webp";
+import Kojiro from "../images/Kojiro.webp";
+import Navigate from "../images/navigate.webp";
+import Rolling from "../images/rolling.webp";
+// import JapanGirl from "../images/japon.webp";
+import HimenoCigarrete from "../images/himeno_c.webp";
 
 export type Style = {
   name: string;
